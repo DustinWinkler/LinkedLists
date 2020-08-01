@@ -12,7 +12,7 @@ class LinkedList
     if @head.nil?
       @head = node
     elsif self.tail.nil?
-      @head.next = node
+      @head.next = nod e
     else
       self.tail.next = node
     end
@@ -46,13 +46,13 @@ class LinkedList
     until node.next.nil?
       node = node.next
     end
-    return node
+    node
   end
 
   # Return node at given index
   def at(index)
-    if index > self.size - 1 
-      puts "The list is only goes up to index: #{self.size - 1}. We'll use the last element"
+    if index > self.size - 1
+      puts "The list only goes up to index: #{self.size - 1}. We'll use the last element"
       index = self.size - 1
     elsif index == -1
       index = self.size - 2 # easy use for pop method
@@ -82,14 +82,14 @@ class LinkedList
     end
 
     if node.value == value
-      index.zero? ? true : i
+      index.zero? ? true : i 
     else
       index.zero? ? false : nil
     end
   end
   # Returns index of node containing given value, if not found, nil
   def find(value)
-    return self.contains?(value, 1)
+    self.contains?(value, 1)
   end
 
   # Insert node with given value at given index
@@ -101,19 +101,15 @@ class LinkedList
 
   # Remove node at given index
   def remove_at(index)
-    if index.zero?
-      @head = @head.next
-    else
-      at(index - 1).next = at(index + 1)
-    end
+    index.zero? ? @head = @head.next : at(index - 1).next = at(index + 1)
   end
 
   # Present list as strings in format: ( value ) -> ( value ) -> ( value ) etc.
-  def to_s
+  def to_s    
     node = @head
     string = ""
     until node.nil?
-      string.concat("( #{node.value} ) -> ")
+      string << ("( #{node.value} ) -> ")
       node = node.next
     end
     string
@@ -127,7 +123,7 @@ class Node
     @value = value
     @next = nil
   end
-
+ 
 end
 
 list = LinkedList.new
